@@ -39,6 +39,8 @@ const Dropdown = ({name,list,clickFunc}) => {
                 key={index}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
+                onClick={()=>{clickFunc(element);
+                console.log(element)}}
               >
                 {element.includes('_')?element.split('_').map((text)=>text.charAt(0).toUpperCase()+text.slice(1)).join(' '):element.split(' ').map((text)=>text.charAt(0).toUpperCase()+text.slice(1)).join(' ')}
               </p>

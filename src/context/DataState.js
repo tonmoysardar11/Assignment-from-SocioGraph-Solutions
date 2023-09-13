@@ -3,12 +3,12 @@ import { dataContext } from "./dataContext";
 
 const DataState = ({ children }) => {
   const baseURL = "https://staging.iamdave.ai";
-  const header={
+  const header = {
     "Content-Type": "application/json",
     "X-I2CE-ENTERPRISE-ID": "dave_vs_covid",
     "X-I2CE-USER-ID": "ananth+covid@i2ce.in",
     "X-I2CE-API-KEY": "0349234-38472-1209-2837-3432434",
-  }
+  };
   const [data, setdata] = useState([]);
   const [pageno, setpageno] = useState(1);
   const [loader, setloader] = useState();
@@ -17,14 +17,26 @@ const DataState = ({ children }) => {
   const [categorylist, setcategorylist] = useState();
   const [channellist, setchannellist] = useState();
   const [statelist, setstatelist] = useState();
+  const [selectedcategory, setselectedcategory] = useState();
+  const [selectedchannel, setselectedchannel] = useState();
+  const [selectedstate, setselectedstate] = useState();
   const fetchInitialData = async () => {
     setdata([]);
+    setselectedcategory();
+    setselectedchannel();
+    setselectedstate();
     setloader(true);
     const fetchedPrimaryData = await fetch(
-      `${baseURL}/list/supply?_page_number=${pageno}`,
+      selectedcategory
+        ? `${baseURL}/list/supply?_page_number=${pageno}&category=${selectedcategory}`
+        : selectedchannel
+        ? `${baseURL}/list/supply?_page_number=${pageno}&channel=${selectedchannel}`
+        : selectedstate
+        ? `${baseURL}/list/supply?_page_number=${pageno}&state=${selectedstate}`
+        : `${baseURL}/list/supply?_page_number=${pageno}`,
       {
         method: "get",
-        headers: header
+        headers: header,
       }
     );
     const responsePrimary = await fetchedPrimaryData.json();
@@ -40,34 +52,35 @@ const DataState = ({ children }) => {
       `${baseURL}/unique/supply/category`,
       {
         method: "get",
-        headers: header
+        headers: header,
       }
     );
     const response = await fetchedCategoryList.json();
-    setcategorylist(response.data)
+    setcategorylist(response.data);
   };
   const fetchChannel = async () => {
     const fetchedChannelList = await fetch(`${baseURL}/unique/supply/channel`, {
       method: "get",
-      headers: header
+      headers: header,
     });
     const response = await fetchedChannelList.json();
-setchannellist(response.data)
+    setchannellist(response.data);
   };
   const fetchState = async () => {
     const fetchedStateList = await fetch(`${baseURL}/unique/supply/state`, {
       method: "get",
-      headers: header
+      headers: header,
     });
     const response = await fetchedStateList.json();
-    setstatelist(response.data)
+    setstatelist(response.data);
   };
   useEffect(() => {
     fetchInitialData();
     fetchCategory();
     fetchChannel();
     fetchState();
-  }, [pageno]);
+    // eslint-disable-next-line
+  }, [pageno,selectedcategory,selectedchannel,selectedstate]);
 
   const nextpage = () => {
     setpageno(pageno + 1);
@@ -78,7 +91,21 @@ setchannellist(response.data)
 
   return (
     <dataContext.Provider
-      value={{ data, pageno, nextpage, prevpage, loader, isfirst, islast,categorylist,channellist,statelist }}
+      value={{
+        data,
+        pageno,
+        nextpage,
+        prevpage,
+        loader,
+        isfirst,
+        islast,
+        categorylist,
+        channellist,
+        statelist,
+        setselectedcategory,
+        setselectedchannel,
+        setselectedstate
+      }}
     >
       {children}
     </dataContext.Provider>

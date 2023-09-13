@@ -7,7 +7,9 @@ import Dropdown from "./Dropdown";
 const Filters = () => {
   const [filter, setfilter] = useState(false);
   const output = useContext(dataContext);
-  const { categorylist, channellist, statelist } = output;
+  const { categorylist, channellist,statelist, setselectedcategory,
+    setselectedchannel,
+    setselectedstate } = output;
 
   const toggle = () => {
     setfilter(!filter);
@@ -44,9 +46,9 @@ const Filters = () => {
           filter ? `flex` : `hidden`
         } lg:flex flex-col justify-center items-start py-3`}
       >
-        <Dropdown name='Choose by Category' list={rectify(Object.keys(categorylist))} clickFunc='click'/>
-        <Dropdown name='Choose by Channel' list={rectify(Object.keys(channellist))} clickFunc='click'/>
-        <Dropdown name='Choose by State' list={rectify(Object.keys(statelist))} clickFunc='click'/>
+        <Dropdown name='Choose by Category' list={rectify(Object.keys(categorylist))} clickFunc={(item)=>setselectedcategory(item)}/>
+        <Dropdown name='Choose by Channel' list={rectify(Object.keys(channellist))} clickFunc={(item)=>setselectedchannel(item)}/>
+        <Dropdown name='Choose by State' list={rectify(Object.keys(statelist))} clickFunc={(item)=>setselectedstate(item)}/>
       </div>
     </aside>
   );
