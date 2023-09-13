@@ -2,21 +2,22 @@ import React, { useContext } from "react";
 import { Puff } from "react-loader-spinner";
 import { dataContext } from "../context/dataContext";
 import Filters from "./Filters";
+import Footer from "../layout/Footer";
 
 const Home = () => {
   const output = useContext(dataContext);
-  const { data, pageno, nextpage, prevpage, loader, isfirst, islast } = output;
+  const { data, loader } = output;
 
   return (
     <>
       {data.length > 0 ? (
         <section className="text-gray-600 body-font">
           <div className="flex justify-between p-5 mx-auto">
-          <Filters/>
+            <Filters />
             <div className="flex flex-wrap w-full lg:w-4/5">
               {data?.map((element) => {
                 return (
-                  <div key={element.source_id} className="p-2 lg:w-1/4">
+                  <div key={element.source_id} className="p-2 lg:w-1/3">
                     <div className="h-min bg-gray-200 p-4 rounded-lg overflow-hidden text-left relative flex flex-col justify-between">
                       <div className="w-full flex justify-between items-center">
                         <span className="text-sm title-font flex mb-2">
@@ -102,30 +103,7 @@ const Home = () => {
           />
         </div>
       )}
-
-      <footer className="fixed bottom-0 w-full z-20 bg-gray-900 body-font px-3 md:px-5 lg:px-10 xl:px-15">
-        <div className="w-full mx-auto flex flex-wrap px-1 md:px-5 py-2 justify-between items-center">
-          <button
-            class="inline-flex items-center bg-gray-100 text-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 disabled:invisible"
-            disabled={isfirst}
-            onClick={prevpage}
-          >
-            &larr; Previous Page
-          </button>
-          <p className="font-semibold text-gray-200 mx-2">
-            {data.length > 0
-              ? `Page No ${pageno}`
-              : "Please Wait While Loading"}
-          </p>
-          <button
-            class="inline-flex items-center bg-gray-100 text-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 disabled:invisible"
-            disabled={islast}
-            onClick={nextpage}
-          >
-            Next Page &rarr;
-          </button>
-        </div>
-      </footer>
+      <Footer/>
     </>
   );
 };
