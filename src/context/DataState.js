@@ -3,6 +3,12 @@ import { dataContext } from "./dataContext";
 
 const DataState = ({ children }) => {
   const baseURL = "https://staging.iamdave.ai";
+  const header={
+    "Content-Type": "application/json",
+    "X-I2CE-ENTERPRISE-ID": "dave_vs_covid",
+    "X-I2CE-USER-ID": "ananth+covid@i2ce.in",
+    "X-I2CE-API-KEY": "0349234-38472-1209-2837-3432434",
+  }
   const [data, setdata] = useState([]);
   const [pageno, setpageno] = useState(1);
   const [loader, setloader] = useState();
@@ -18,12 +24,7 @@ const DataState = ({ children }) => {
       `${baseURL}/list/supply?_page_number=${pageno}`,
       {
         method: "get",
-        headers: {
-          "Content-Type": "application/json",
-          "X-I2CE-ENTERPRISE-ID": "dave_vs_covid",
-          "X-I2CE-USER-ID": "ananth+covid@i2ce.in",
-          "X-I2CE-API-KEY": "0349234-38472-1209-2837-3432434",
-        },
+        headers: header
       }
     );
     const responsePrimary = await fetchedPrimaryData.json();
@@ -39,12 +40,7 @@ const DataState = ({ children }) => {
       `${baseURL}/unique/supply/category`,
       {
         method: "get",
-        headers: {
-          "Content-Type": "application/json",
-          "X-I2CE-ENTERPRISE-ID": "dave_vs_covid",
-          "X-I2CE-USER-ID": "ananth+covid@i2ce.in",
-          "X-I2CE-API-KEY": "0349234-38472-1209-2837-3432434",
-        },
+        headers: header
       }
     );
     const response = await fetchedCategoryList.json();
@@ -53,12 +49,7 @@ const DataState = ({ children }) => {
   const fetchChannel = async () => {
     const fetchedChannelList = await fetch(`${baseURL}/unique/supply/channel`, {
       method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        "X-I2CE-ENTERPRISE-ID": "dave_vs_covid",
-        "X-I2CE-USER-ID": "ananth+covid@i2ce.in",
-        "X-I2CE-API-KEY": "0349234-38472-1209-2837-3432434",
-      },
+      headers: header
     });
     const response = await fetchedChannelList.json();
 setchannellist(response.data)
@@ -66,12 +57,7 @@ setchannellist(response.data)
   const fetchState = async () => {
     const fetchedStateList = await fetch(`${baseURL}/unique/supply/state`, {
       method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        "X-I2CE-ENTERPRISE-ID": "dave_vs_covid",
-        "X-I2CE-USER-ID": "ananth+covid@i2ce.in",
-        "X-I2CE-API-KEY": "0349234-38472-1209-2837-3432434",
-      },
+      headers: header
     });
     const response = await fetchedStateList.json();
     setstatelist(response.data)
