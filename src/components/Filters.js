@@ -12,7 +12,7 @@ const Filters = () => {
     setfilter(!filter);
   };
   return (
-    <aside className="sticky top-0 lg:top-6 flex flex-col w-full lg:w-1/5 bg-white text-black shadow-md shadow-gray-300 md:p-3 overflow-y-auto h-min lg:h-[87vh]">
+    <aside className="sticky top-0 lg:top-6 flex flex-col w-full lg:w-1/5 bg-white text-black shadow-md shadow-gray-300 md:p-3 overflow-y-auto h-min lg:h-[87vh] z-30">
       <div className="px-3 py-2 text-2xl font-semibold flex justify-between items-center">
         <span className="ml-4 md:ml-0">Filters</span>
         {filter ? (
@@ -25,7 +25,7 @@ const Filters = () => {
           <FontAwesomeIcon
             icon={faBars}
             onClick={toggle}
-            className="mx-3 lg:hidden block text-xl duration-200"
+            className="mx-3 lg:hidden block text-xl duration-200 text-gray-900"
           />
         )}
       </div>

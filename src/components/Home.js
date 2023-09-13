@@ -12,9 +12,9 @@ const Home = () => {
     <>
       {data.length > 0 ? (
         <section className="text-gray-600 body-font">
-          <div className="flex justify-between p-5 mx-auto">
+          <div className="flex justify-between p-5 mx-auto flex-col lg:flex-row">
             <Filters />
-            <div className="flex flex-wrap w-full lg:w-4/5">
+            <div className="flex flex-wrap pt-24 lg:pt-0 w-full lg:w-4/5">
               {data?.map((element) => {
                 return (
                   <div key={element.source_id} className="p-2 lg:w-1/3">
