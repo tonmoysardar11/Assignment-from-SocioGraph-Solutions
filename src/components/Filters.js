@@ -13,7 +13,7 @@ const Filters = () => {
     setfilter(!filter);
   };
   return (
-    <aside className="sticky top-0 lg:top-6 flex flex-col justify-start items-center w-full lg:w-1/5 bg-white text-black overflow-y-auto h-[80vh] lg:max-h-[87vh] z-30">
+    <aside className="sticky top-0 lg:top-6 flex flex-col justify-start items-center w-full lg:w-1/5 bg-white text-black min-h-min max-h-[87vh] z-30">
       <div className="px-3 py-2 text-2xl font-semibold flex justify-between items-center">
         <span className="ml-4 md:ml-0">Filters</span>
         {filter ? (

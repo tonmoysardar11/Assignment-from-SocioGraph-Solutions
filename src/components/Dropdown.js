@@ -33,7 +33,7 @@ const Dropdown = ({name,list,clickFunc}) => {
 
     {isOpen && (
       <div className="origin-top absolute top-15 mt-2 min-w-max w-44  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-40">
-        <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+        <div className="py-1 overflow-y-auto max-h-80" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             {list.map((element,index)=>{
                 return <p
                 key={index}
