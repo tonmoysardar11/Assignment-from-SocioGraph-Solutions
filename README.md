@@ -1,70 +1,37 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Assignment by Tonmoy Sardar 
 
-## Available Scripts
+This is a React project that provides functionality for fetching and displaying data with filter options, pagination, and dynamic data loading based on user-selected filters. The project is designed to make it easy for users to navigate through data sets, apply filters, and view filtered data.
 
-In the project directory, you can run:
+# Features
 
-### `npm start`
+# Initial Loading
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Upon the initial load of the application, all available data is fetched and displayed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Pagination
 
-### `npm test`
+The project offers pagination functionality with "Next Page" and "Previous Page" buttons, enabling users to navigate through the dataset easily.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Filter Options
 
-### `npm run build`
+There are three types of filters available to users:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Filter Type 1: Description of the first filter.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Filter Type 2: Description of the second filter.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Filter Type 3: Description of the third filter.
 
-### `npm run eject`
+#Dynamic Data Loading
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+After choosing a filter, the application will dynamically load data that matches the selected filter criteria. The selected filter will be prominently displayed to provide clarity to the user.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Removing Filters
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If a user decides to remove a filter, the application will automatically revert to the initial loading state, fetching and displaying the entire dataset.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#npm i to install all npm packages
+#npm start to start the app in localhost:3000
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#WEBSITE LIVE AT- https://assignment-sociograph-solutions-2023.netlify.app/
