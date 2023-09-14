@@ -23,11 +23,11 @@ const DataState = ({ children }) => {
   const [currentfilter, setcurrentfilter] = useState("");
   const [sortreverse, setsortreverse] = useState("");
 
-  const fetchWithSort = () => {
-    return `${baseURL}/list/supply?_page_number=${pageno}&_sort_by=source_time&_sort_reverse=${sortreverse}`;
-  };
-  const fetchWithoutSort = () => {
-    return selectedcategory
+  
+  const fetchData = () => {
+    return sortreverse !== ""
+      ? `${baseURL}/list/supply?_page_number=${pageno}&_sort_by=source_time&_sort_reverse=${sortreverse}`
+      : selectedcategory
       ? `${baseURL}/list/supply?_page_number=${pageno}&category=${selectedcategory}`
       : selectedchannel
       ? `${baseURL}/list/supply?_page_number=${pageno}&channel=${selectedchannel}`
@@ -38,13 +38,10 @@ const DataState = ({ children }) => {
   const fetchInitialData = async () => {
     setdata([]);
     setloader(true);
-    const fetchedPrimaryData = await fetch(
-      sortreverse==='' ? fetchWithoutSort() : fetchWithSort(),
-      {
-        method: "get",
-        headers: header,
-      }
-    );
+    const fetchedPrimaryData = await fetch(fetchData(), {
+      method: "get",
+      headers: header,
+    });
     const responsePrimary = await fetchedPrimaryData.json();
 
     setdata(responsePrimary.data);
