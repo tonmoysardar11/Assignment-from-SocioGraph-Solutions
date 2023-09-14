@@ -32,18 +32,21 @@ const Filters = () => {
 
   const setCategory = (item) => {
     setselectedcategory(item);
-    setselectedchannel();
-    setselectedstate();
+    setselectedchannel('');
+    setselectedstate('');
+    setsortreverse('')
   };
   const setChannel = (item) => {
-    setselectedcategory();
+    setselectedcategory('');
     setselectedchannel(item);
-    setselectedstate();
+    setselectedstate('');
+    setsortreverse('')
   };
   const setState = (item) => {
-    setselectedcategory();
-    setselectedchannel();
+    setselectedcategory('');
+    setselectedchannel('');
     setselectedstate(item);
+    setsortreverse('')
   };
 
   const setSort = (item) => {
