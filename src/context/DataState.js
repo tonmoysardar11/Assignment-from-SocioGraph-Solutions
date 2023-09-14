@@ -20,11 +20,9 @@ const DataState = ({ children }) => {
   const [selectedcategory, setselectedcategory] = useState();
   const [selectedchannel, setselectedchannel] = useState();
   const [selectedstate, setselectedstate] = useState();
+  const [currentfilter, setcurrentfilter] = useState("");
   const fetchInitialData = async () => {
     setdata([]);
-    setselectedcategory();
-    setselectedchannel();
-    setselectedstate();
     setloader(true);
     const fetchedPrimaryData = await fetch(
       selectedcategory
@@ -80,7 +78,7 @@ const DataState = ({ children }) => {
     fetchChannel();
     fetchState();
     // eslint-disable-next-line
-  }, [pageno,selectedcategory,selectedchannel,selectedstate]);
+  }, [pageno,selectedcategory,selectedchannel,selectedstate,currentfilter]);
 
   const nextpage = () => {
     setpageno(pageno + 1);
@@ -104,7 +102,9 @@ const DataState = ({ children }) => {
         statelist,
         setselectedcategory,
         setselectedchannel,
-        setselectedstate
+        setselectedstate,
+        currentfilter,
+        setcurrentfilter
       }}
     >
       {children}

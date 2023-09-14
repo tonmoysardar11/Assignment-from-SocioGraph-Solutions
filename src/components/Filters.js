@@ -7,9 +7,16 @@ import Dropdown from "./Dropdown";
 const Filters = () => {
   const [filter, setfilter] = useState(false);
   const output = useContext(dataContext);
-  const { categorylist, channellist,statelist, setselectedcategory,
+  const { 
+    categorylist,
+     channellist,
+     statelist, 
+     setselectedcategory,
     setselectedchannel,
-    setselectedstate } = output;
+    setselectedstate,
+    currentfilter,
+    setcurrentfilter 
+  } = output;
 
   const toggle = () => {
     setfilter(!filter);
@@ -20,6 +27,29 @@ const Filters = () => {
       return element!=='' && element!=='null'
     })
     return(newArr) 
+  }
+
+  const setCategory=(item)=>{
+    setselectedcategory(item);
+    setselectedchannel();
+    setselectedstate();
+  }
+  const setChannel=(item)=>{
+    setselectedcategory();
+    setselectedchannel(item);
+    setselectedstate();
+  }
+  const setState=(item)=>{
+    setselectedcategory();
+    setselectedchannel();
+    setselectedstate(item);
+  }
+
+  const clearFilter=()=>{
+    setselectedcategory();
+    setselectedchannel();
+    setselectedstate();
+    setcurrentfilter()
   }
   
 
@@ -46,10 +76,18 @@ const Filters = () => {
           filter ? `flex` : `hidden`
         } lg:flex flex-col justify-center items-start py-3`}
       >
-        <Dropdown name='Choose by Category' list={rectify(Object.keys(categorylist))} clickFunc={(item)=>setselectedcategory(item)}/>
-        <Dropdown name='Choose by Channel' list={rectify(Object.keys(channellist))} clickFunc={(item)=>setselectedchannel(item)}/>
-        <Dropdown name='Choose by State' list={rectify(Object.keys(statelist))} clickFunc={(item)=>setselectedstate(item)}/>
+        <Dropdown name='Choose by Category' list={categorylist?rectify(Object.keys(categorylist)):''} clickFunc={setCategory}/>
+        <Dropdown name='Choose by Channel' list={channellist?rectify(Object.keys(channellist)):''} clickFunc={setChannel}/>
+        <Dropdown name='Choose by State' list={statelist?rectify(Object.keys(statelist)):''} clickFunc={setState}/>
       </div>
+      {currentfilter ? (
+        <div className="w-full flex justify-center items-center">
+          <p>Selected: {currentfilter}</p>
+          <button className="bg-red-600 rounded-full text-gray-100 mx-4 px-2 cursor-pointer" onClick={clearFilter}>Remove</button>
+        </div>
+      ) : (
+        ""
+      )}
     </aside>
   );
 };

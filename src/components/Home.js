@@ -33,8 +33,7 @@ const Home = () => {
                             Channel:{" "}
                           </p>
                           {element.channel
-                            ? element.channel.charAt(0).toUpperCase() +
-                              element.channel.slice(1)
+                            ? element.channel.split('_').map((text)=>text.charAt(0).toUpperCase()+text.slice(1)).join(' ')
                             : "Unknown"}
                         </span>
                       </div>
@@ -60,8 +59,7 @@ const Home = () => {
                           State:{" "}
                         </p>
                         {element.state
-                          ? element.state.charAt(0).toUpperCase() +
-                            element.state.slice(1)
+                          ? element.state.split(' ').map((text)=>text.charAt(0).toUpperCase()+text.slice(1)).join(' ')
                           : "Unknown"}
                       </span>
                       <span className="text-sm title-font flex my-2">
