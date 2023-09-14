@@ -21,34 +21,31 @@ const DataState = ({ children }) => {
   const [selectedchannel, setselectedchannel] = useState();
   const [selectedstate, setselectedstate] = useState();
   const [currentfilter, setcurrentfilter] = useState("");
-  const [sortreverse, setsortreverse] = useState('');
-  const fetchInitialData = async () => {
-    setdata([]);
-    setloader(true);
-    const fetchWithSort=()=>{
-      console.log(sortreverse)
-      return  selectedcategory
+  const [sortreverse, setsortreverse] = useState("");
+
+  const fetchWithSort = () => {
+    return selectedcategory
       ? `${baseURL}/list/supply?_page_number=${pageno}&category=${selectedcategory}&_sort_by=source_time&_sort_reverse=${sortreverse}`
       : selectedchannel
       ? `${baseURL}/list/supply?_page_number=${pageno}&channel=${selectedchannel}&_sort_by=source_time&_sort_reverse=${sortreverse}`
       : selectedstate
       ? `${baseURL}/list/supply?_page_number=${pageno}&state=${selectedstate}&_sort_by=source_time&_sort_reverse=${sortreverse}`
-      : `${baseURL}/list/supply?_page_number=${pageno}`
-    }
-    const fetchWithoutSort=()=>{
-      console.log(sortreverse)
-      return  selectedcategory
+      : `${baseURL}/list/supply?_page_number=${pageno}`;
+  };
+  const fetchWithoutSort = () => {
+    return selectedcategory
       ? `${baseURL}/list/supply?_page_number=${pageno}&category=${selectedcategory}`
       : selectedchannel
       ? `${baseURL}/list/supply?_page_number=${pageno}&channel=${selectedchannel}`
       : selectedstate
       ? `${baseURL}/list/supply?_page_number=${pageno}&state=${selectedstate}`
-      : `${baseURL}/list/supply?_page_number=${pageno}`
-    }
+      : `${baseURL}/list/supply?_page_number=${pageno}`;
+  };
+  const fetchInitialData = async () => {
+    setdata([]);
+    setloader(true);
     const fetchedPrimaryData = await fetch(
-      sortreverse
-        ? fetchWithSort()
-        : fetchWithoutSort(),
+      sortreverse ? fetchWithSort() : fetchWithoutSort(),
       {
         method: "get",
         headers: header,
@@ -95,7 +92,14 @@ const DataState = ({ children }) => {
     fetchChannel();
     fetchState();
     // eslint-disable-next-line
-  }, [pageno, selectedcategory, selectedchannel, selectedstate, currentfilter,sortreverse]);
+  }, [
+    pageno,
+    selectedcategory,
+    selectedchannel,
+    selectedstate,
+    currentfilter,
+    sortreverse,
+  ]);
 
   const nextpage = () => {
     setpageno(pageno + 1);
@@ -122,7 +126,7 @@ const DataState = ({ children }) => {
         setselectedstate,
         currentfilter,
         setcurrentfilter,
-        setsortreverse
+        setsortreverse,
       }}
     >
       {children}
