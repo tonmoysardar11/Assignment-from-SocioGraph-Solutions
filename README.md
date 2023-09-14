@@ -17,13 +17,15 @@ The project offers pagination functionality with "Next Page" and "Previous Page"
 
 There are three types of filters available to users:
 
-Filter Type 1: Description of the first filter.
+Filter Type 1: Get Data for Selected Category.
 
-Filter Type 2: Description of the second filter.
+Filter Type 2: Get Data for Selected Channel.
 
-Filter Type 3: Description of the third filter.
+Filter Type 3: Get Data for Selected State.
 
-#Dynamic Data Loading
+Filter Type 4: Sort Data by Ascending/Descending Order of Source Time.
+
+# Dynamic Data Loading
 
 After choosing a filter, the application will dynamically load data that matches the selected filter criteria. The selected filter will be prominently displayed to provide clarity to the user.
 
