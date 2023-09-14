@@ -47,6 +47,9 @@ const Filters = () => {
   };
 
   const setSort = (item) => {
+    setselectedcategory('');
+    setselectedchannel('');
+    setselectedstate('');
     item === "Earlier" ? setsortreverse(false) : setsortreverse(true);
   };
 

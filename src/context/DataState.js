@@ -24,13 +24,7 @@ const DataState = ({ children }) => {
   const [sortreverse, setsortreverse] = useState("");
 
   const fetchWithSort = () => {
-    return selectedcategory
-      ? `${baseURL}/list/supply?_page_number=${pageno}&category=${selectedcategory}&_sort_by=source_time&_sort_reverse=${sortreverse}`
-      : selectedchannel
-      ? `${baseURL}/list/supply?_page_number=${pageno}&channel=${selectedchannel}&_sort_by=source_time&_sort_reverse=${sortreverse}`
-      : selectedstate
-      ? `${baseURL}/list/supply?_page_number=${pageno}&state=${selectedstate}&_sort_by=source_time&_sort_reverse=${sortreverse}`
-      : `${baseURL}/list/supply?_page_number=${pageno}`;
+    return `${baseURL}/list/supply?_page_number=${pageno}&_sort_by=source_time&_sort_reverse=${sortreverse}`;
   };
   const fetchWithoutSort = () => {
     return selectedcategory
@@ -45,7 +39,7 @@ const DataState = ({ children }) => {
     setdata([]);
     setloader(true);
     const fetchedPrimaryData = await fetch(
-      sortreverse ? fetchWithSort() : fetchWithoutSort(),
+      sortreverse==='' ? fetchWithoutSort() : fetchWithSort(),
       {
         method: "get",
         headers: header,
